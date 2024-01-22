@@ -24,13 +24,13 @@ class OnboardingScreenTwoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<OnboardingScreenTwoBloc, OnboardingScreenTwoState>(
       builder: (context, state) {
-        return SafeArea(
-          child: Scaffold(
-            body: SizedBox(
-              width: double.maxFinite,
+        return Scaffold(
+          body: SizedBox(
+            width: double.maxFinite,
+            child: SafeArea(
               child: Column(
                 children: [
-                  Spacer(),
+                  SizedBox(height: 50.v),
                   Text(
                     "msg_order_medicine_online".tr,
                     style: CustomTextStyles.headlineMediumPurpleA100,
@@ -66,12 +66,16 @@ class OnboardingScreenTwoScreen extends StatelessWidget {
                           _buildDeliveryStack(context),
                           SizedBox(height: 62.v),
                           CustomIconButton(
+                            onTap: () {
+                              Navigator.pushNamed(context, AppRoutes.onboardingScreenThreeScreen);
+                            },
                             height: 54.adaptSize,
                             width: 54.adaptSize,
                             padding: EdgeInsets.all(18.h),
                             alignment: Alignment.center,
                             child: CustomImageView(
                               imagePath: ImageConstant.imgArrowRightPurpleA200,
+                              color: Color.fromRGBO(198, 79, 249, 1),
                             ),
                           ),
                         ],

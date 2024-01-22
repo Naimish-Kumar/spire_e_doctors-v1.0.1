@@ -93,6 +93,10 @@ class CustomCheckboxButton extends StatelessWidget {
         height: iconSize,
         width: iconSize,
         child: Checkbox(
+          checkColor: Colors.white,
+          fillColor: value ?? false
+              ? MaterialStatePropertyAll<Color>(ColorSchemes.primaryColorScheme.primary)
+              : MaterialStatePropertyAll<Color>(Colors.white54),
           visualDensity: VisualDensity(
             vertical: -4,
             horizontal: -4,

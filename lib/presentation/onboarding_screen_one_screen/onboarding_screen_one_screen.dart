@@ -24,66 +24,71 @@ class OnboardingScreenOneScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<OnboardingScreenOneBloc, OnboardingScreenOneState>(
       builder: (context, state) {
-        return SafeArea(
-          child: Scaffold(
+        return  Scaffold(
             body: SizedBox(
               width: double.maxFinite,
-              child: Column(
-                children: [
-                  Spacer(),
-                  Text(
-                    "msg_find_your_doctor".tr,
-                    style: theme.textTheme.headlineMedium,
-                  ),
-                  SizedBox(height: 17.v),
-                  SizedBox(
-                    width: 251.h,
-                    child: Text(
-                      "msg_find_a_doctor_who".tr,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.center,
-                      style: theme.textTheme.titleMedium,
+              child: SafeArea(
+                child: Column(
+                  children: [
+                     SizedBox(height: 50.v),
+                    Text(
+                      "msg_find_your_doctor".tr,
+                      style: theme.textTheme.headlineMedium,
                     ),
-                  ),
-                  SizedBox(height: 25.v),
-                  Expanded(
-                    child: Container(
-                      width: double.maxFinite,
-                      padding: EdgeInsets.symmetric(vertical: 21.v),
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(
-                            ImageConstant.imgGroup15,
-                          ),
-                          fit: BoxFit.cover,
-                        ),
+                    SizedBox(height: 17.v),
+                    SizedBox(
+                      width: 251.h,
+                      child: Text(
+                        "msg_find_a_doctor_who".tr,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.center,
+                        style: theme.textTheme.titleMedium,
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Spacer(),
-                          _buildDoctorReviews(context),
-                          SizedBox(height: 62.v),
-                          Padding(
-                            padding: EdgeInsets.only(left: 150.h),
-                            child: CustomIconButton(
-                              height: 54.adaptSize,
-                              width: 54.adaptSize,
-                              padding: EdgeInsets.all(18.h),
-                              child: CustomImageView(
-                                imagePath: ImageConstant.imgArrowRight,
+                    ),
+                    SizedBox(height: 25.v),
+                    Expanded(
+                      child: Container(
+                        width: double.maxFinite,
+                        padding: EdgeInsets.symmetric(vertical: 21.v),
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(
+                              ImageConstant.imgGroup15,
+                            ),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Spacer(),
+                            _buildDoctorReviews(context),
+                            SizedBox(height: 62.v),
+                            Padding(
+                              padding: EdgeInsets.only(left: 150.h),
+                              child: CustomIconButton(
+                                onTap: () {
+                                 Navigator.pushNamed(context, AppRoutes.onboardingScreenTwoScreen);
+                                },
+                                height: 54.adaptSize,
+                                width: 54.adaptSize,
+                                padding: EdgeInsets.all(18.h),
+                                child: CustomImageView(
+                                  imagePath: ImageConstant.imgArrowRight,
+                                  color: Color.fromRGBO(17, 184, 190, 1),
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
+          
         );
       },
     );

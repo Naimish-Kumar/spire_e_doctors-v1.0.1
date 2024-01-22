@@ -5,7 +5,7 @@ import 'package:spire_e_doctors/presentation/onboarding_screen/onboarding_screen
 import 'package:spire_e_doctors/presentation/onboarding_screen_two_screen/onboarding_screen_two_screen.dart';
 import 'package:spire_e_doctors/presentation/onboarding_screen_three_screen/onboarding_screen_three_screen.dart';
 import 'package:spire_e_doctors/presentation/sign_up_screen/sign_up_screen.dart';
-import 'package:spire_e_doctors/presentation/app_navigation_screen/app_navigation_screen.dart';
+
 
 class AppRoutes {
   static const String splashScreen = '/splash_screen';
@@ -23,7 +23,7 @@ class AppRoutes {
 
   static const String signUpScreen = '/sign_up_screen';
 
-  static const String appNavigationScreen = '/app_navigation_screen';
+
 
   static const String initialRoute = '/initialRoute';
 
@@ -34,7 +34,6 @@ class AppRoutes {
         onboardingScreenTwoScreen: OnboardingScreenTwoScreen.builder,
         onboardingScreenThreeScreen: OnboardingScreenThreeScreen.builder,
         signUpScreen: SignUpScreen.builder,
-        appNavigationScreen: AppNavigationScreen.builder,
         initialRoute: SplashScreen.builder
       };
 }

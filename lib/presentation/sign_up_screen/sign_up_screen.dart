@@ -20,196 +20,207 @@ class SignUpScreen extends StatelessWidget {
 
   static Widget builder(BuildContext context) {
     return BlocProvider<SignUpBloc>(
-        create: (context) =>
-            SignUpBloc(SignUpState(signUpModelObj: SignUpModel()))
-              ..add(SignUpInitialEvent()),
+        create: (context) => SignUpBloc(
+              SignUpState(
+                signUpModelObj: SignUpModel(),
+              ),
+            )..add(SignUpInitialEvent()),
         child: SignUpScreen());
   }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            backgroundColor: appTheme.gray100,
-            resizeToAvoidBottomInset: false,
-            appBar: _buildAppBar(context),
-            body: SizedBox(
-                width: SizeUtils.width,
-                child: SingleChildScrollView(
-                    padding: EdgeInsets.only(
-                        bottom: MediaQuery.of(context).viewInsets.bottom),
-                    child: Form(
-                        key: _formKey,
-                        child: Container(
-                            width: double.maxFinite,
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16.h, vertical: 32.v),
-                            child: Column(children: [
-                              Text("msg_create_your_account".tr,
-                                  style: theme.textTheme.headlineLarge),
-                              SizedBox(height: 29.v),
-                              _buildCreateYourAccount(context),
-                              SizedBox(height: 12.v),
-                              _buildName(context),
-                              SizedBox(height: 12.v),
-                              _buildEmail(context),
-                              SizedBox(height: 12.v),
-                              _buildMobileNumber(context),
-                              SizedBox(height: 12.v),
-                              _buildPassword(context),
-                              SizedBox(height: 16.v),
-                              _buildRememberMe(context),
-                              SizedBox(height: 32.v),
-                              _buildSignUp(context),
-                              SizedBox(height: 34.v),
-                              _buildOr(context),
-                              SizedBox(height: 25.v),
-                              Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    CustomIconButton(
-                                        height: 48.adaptSize,
-                                        width: 48.adaptSize,
-                                        padding: EdgeInsets.all(12.h),
-                                        decoration: IconButtonStyleHelper
-                                            .outlineBlackTL8,
-                                        onTap: () {
-                                          onTapBtnFacebook(context);
-                                        },
-                                        child: CustomImageView(
-                                            imagePath:
-                                                ImageConstant.imgFacebook)),
-                                    Padding(
-                                        padding: EdgeInsets.only(left: 24.h),
-                                        child: CustomIconButton(
-                                            height: 48.adaptSize,
-                                            width: 48.adaptSize,
-                                            padding: EdgeInsets.all(12.h),
-                                            decoration: IconButtonStyleHelper
-                                                .outlineBlackTL8,
-                                            onTap: () {
-                                              onTapBtnGoogle(context);
-                                            },
-                                            child: CustomImageView(
-                                                imagePath:
-                                                    ImageConstant.imgGoogle))),
-                                    Padding(
-                                        padding: EdgeInsets.only(left: 24.h),
-                                        child: CustomIconButton(
-                                            height: 48.adaptSize,
-                                            width: 48.adaptSize,
-                                            padding: EdgeInsets.all(12.h),
-                                            decoration: IconButtonStyleHelper
-                                                .outlineBlackTL8,
-                                            child: CustomImageView(
-                                                imagePath: ImageConstant
-                                                    .imgIconBlack900)))
-                                  ]),
-                              SizedBox(height: 29.v),
-                              RichText(
-                                  text: TextSpan(children: [
-                                    TextSpan(
-                                        text: "lbl_already".tr,
-                                        style: CustomTextStyles
-                                            .titleMediumff666666),
-                                    TextSpan(
-                                        text: "msg_have_an_account".tr,
-                                        style: CustomTextStyles
-                                            .titleMediumff666666),
-                                    TextSpan(
-                                        text: "lbl_sign_in".tr,
-                                        style: CustomTextStyles
-                                            .titleMediumff000000)
-                                  ]),
-                                  textAlign: TextAlign.left),
-                              SizedBox(height: 5.v)
-                            ])))))));
+    return Scaffold(
+      backgroundColor: appTheme.gray100,
+      resizeToAvoidBottomInset: false,
+      appBar: _buildAppBar(context),
+      body: SizedBox(
+        width: SizeUtils.width,
+        child: SingleChildScrollView(
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: Form(
+            key: _formKey,
+            child: Container(
+              width: double.maxFinite,
+              padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 32.v),
+              child: SafeArea(
+                child: Column(children: [
+                  Text("msg_create_your_account".tr,
+                      style: theme.textTheme.headlineLarge),
+                  SizedBox(height: 29.v),
+                  _buildCreateYourAccount(context),
+                  SizedBox(height: 12.v),
+                  _buildName(context),
+                  SizedBox(height: 12.v),
+                  _buildEmail(context),
+                  SizedBox(height: 12.v),
+                  _buildMobileNumber(context),
+                  SizedBox(height: 12.v),
+                  _buildPassword(context),
+                  SizedBox(height: 16.v),
+                  _buildRememberMe(context),
+                  SizedBox(height: 20.v),
+                  _buildSignUp(context),
+                  SizedBox(height: 15.v),
+                  _buildOr(context),
+                  SizedBox(height: 25.v),
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    CustomIconButton(
+                      height: 48.adaptSize,
+                      width: 48.adaptSize,
+                      padding: EdgeInsets.all(5.h),
+                      decoration: IconButtonStyleHelper.outlineBlackTL8,
+                      onTap: () {
+                        onTapBtnFacebook(context);
+                      },
+                      child:
+                          CustomImageView(imagePath: 'assets/images/facebook.png'),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 24.h),
+                      child: CustomIconButton(
+                        height: 48.adaptSize,
+                        width: 48.adaptSize,
+                        padding: EdgeInsets.all(5.h),
+                        decoration: IconButtonStyleHelper.outlineBlackTL8,
+                        onTap: () {
+                          onTapBtnGoogle(context);
+                        },
+                        child:
+                            CustomImageView(imagePath: 'assets/images/google.png'),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 24.h),
+                      child: CustomIconButton(
+                          height: 48.adaptSize,
+                          width: 48.adaptSize,
+                          padding: EdgeInsets.all(8.h),
+                          decoration: IconButtonStyleHelper.outlineBlackTL8,
+                          child: CustomImageView(
+                              imagePath: 'assets/images/twitter.png')),
+                    )
+                  ]),
+                  SizedBox(height: 29.v),
+                  RichText(
+                      text: TextSpan(children: [
+                        TextSpan(
+                            text: "lbl_already".tr,
+                            style: CustomTextStyles.titleMediumff666666),
+                        TextSpan(
+                            text: "msg_have_an_account".tr,
+                            style: CustomTextStyles.titleMediumff666666),
+                        TextSpan(
+                            text: "lbl_sign_in".tr,
+                            style: CustomTextStyles.titleMediumff000000)
+                      ]),
+                      textAlign: TextAlign.left),
+                  SizedBox(height: 5.v)
+                ]),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   /// Section Widget
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return CustomAppBar(
-        leadingWidth: double.maxFinite,
-        leading: AppbarLeadingImage(
-            imagePath: ImageConstant.imgButtonBack,
-            margin: EdgeInsets.fromLTRB(16.h, 10.v, 335.h, 10.v),
-            onTap: () {
-              onTapButtonBack(context);
-            }));
+      leadingWidth: double.maxFinite,
+      leading: AppbarLeadingImage(
+        imagePath: ImageConstant.imgButtonBack,
+        margin: EdgeInsets.fromLTRB(16.h, 10.v, 335.h, 10.v),
+        onTap: () {
+          onTapButtonBack(context);
+        },
+      ),
+    );
   }
 
   /// Section Widget
   Widget _buildCreateYourAccount(BuildContext context) {
     return BlocSelector<SignUpBloc, SignUpState, TextEditingController?>(
-        selector: (state) => state.createYourAccountController,
-        builder: (context, createYourAccountController) {
-          return CustomTextFormField(
-              controller: createYourAccountController,
-              hintText: "lbl_your_name".tr,
-              prefix: Container(
-                  margin: EdgeInsets.all(12.h),
-                  child: CustomImageView(
-                      imagePath: ImageConstant.imgLock,
-                      height: 24.adaptSize,
-                      width: 24.adaptSize)),
-              prefixConstraints: BoxConstraints(maxHeight: 48.v),
-              validator: (value) {
-                if (!isText(value)) {
-                  return "err_msg_please_enter_valid_text".tr;
-                }
-                return null;
-              });
-        });
+      selector: (state) => state.createYourAccountController,
+      builder: (context, createYourAccountController) {
+        return CustomTextFormField(
+          controller: createYourAccountController,
+          hintText: "lbl_your_name".tr,
+          prefix: Container(
+              margin: EdgeInsets.all(12.h),
+              child: CustomImageView(
+                  imagePath: ImageConstant.imgLock,
+                   color: Colors.black,
+                  height: 20.adaptSize,
+                  width: 20.adaptSize)),
+          prefixConstraints: BoxConstraints(maxHeight: 48.v),
+          validator: (value) {
+            if (!isText(value)) {
+              return "err_msg_please_enter_valid_text".tr;
+            }
+            return null;
+          },
+        );
+      },
+    );
   }
 
   /// Section Widget
   Widget _buildName(BuildContext context) {
     return BlocSelector<SignUpBloc, SignUpState, TextEditingController?>(
-        selector: (state) => state.nameController,
-        builder: (context, nameController) {
-          return CustomTextFormField(
-              controller: nameController,
-              hintText: "lbl_email".tr,
-              textInputType: TextInputType.emailAddress,
-              prefix: Container(
-                  margin: EdgeInsets.all(12.h),
-                  child: CustomImageView(
-                      imagePath: ImageConstant.imgLockBlack900,
-                      height: 24.adaptSize,
-                      width: 24.adaptSize)),
-              prefixConstraints: BoxConstraints(maxHeight: 48.v),
-              validator: (value) {
-                if (value == null || (!isValidEmail(value, isRequired: true))) {
-                  return "err_msg_please_enter_valid_email".tr;
-                }
-                return null;
-              });
-        });
+      selector: (state) => state.nameController,
+      builder: (context, nameController) {
+        return CustomTextFormField(
+          controller: nameController,
+          hintText: "lbl_email".tr,
+          textInputType: TextInputType.emailAddress,
+          prefix: Container(
+              margin: EdgeInsets.all(12.h),
+              child: CustomImageView(
+                  imagePath: ImageConstant.imgLockBlack900,
+                  color: Colors.black,
+                  height: 20.adaptSize,
+                  width: 20.adaptSize)),
+          prefixConstraints: BoxConstraints(maxHeight: 48.v),
+          validator: (value) {
+            if (value == null || (!isValidEmail(value, isRequired: true))) {
+              return "err_msg_please_enter_valid_email".tr;
+            }
+            return null;
+          },
+        );
+      },
+    );
   }
 
   /// Section Widget
   Widget _buildEmail(BuildContext context) {
     return BlocSelector<SignUpBloc, SignUpState, TextEditingController?>(
-        selector: (state) => state.emailController,
-        builder: (context, emailController) {
-          return CustomTextFormField(
-              controller: emailController,
-              hintText: "msg_enter_mobile_number".tr,
-              textInputType: TextInputType.phone,
-              prefix: Container(
-                  margin: EdgeInsets.fromLTRB(12.h, 16.v, 16.h, 12.v),
-                  child: CustomImageView(
-                      imagePath: ImageConstant.img1911,
-                      height: 20.adaptSize,
-                      width: 20.adaptSize)),
-              prefixConstraints: BoxConstraints(maxHeight: 48.v),
-              validator: (value) {
-                if (!isValidPhone(value)) {
-                  return "err_msg_please_enter_valid_phone_number".tr;
-                }
-                return null;
-              });
-        });
+      selector: (state) => state.emailController,
+      builder: (context, emailController) {
+        return CustomTextFormField(
+          controller: emailController,
+          hintText: "msg_enter_mobile_number".tr,
+          textInputType: TextInputType.phone,
+          prefix: Container(
+              margin: EdgeInsets.fromLTRB(12.h, 16.v, 16.h, 12.v),
+              child: CustomImageView(
+                  imagePath: ImageConstant.img1911,
+                  color: Colors.black,
+                  height: 20.adaptSize,
+                  width: 20.adaptSize)),
+          prefixConstraints: BoxConstraints(maxHeight: 48.v),
+          validator: (value) {
+            if (!isValidPhone(value)) {
+              return "err_msg_please_enter_valid_phone_number".tr;
+            }
+            return null;
+          },
+        );
+      },
+    );
   }
 
   /// Section Widget
@@ -223,8 +234,9 @@ class SignUpScreen extends StatelessWidget {
               margin: EdgeInsets.all(12.h),
               child: CustomImageView(
                   imagePath: ImageConstant.imgTrophy,
-                  height: 24.adaptSize,
-                  width: 24.adaptSize)),
+                  color: Colors.black,
+                  height: 20.adaptSize,
+                  width: 20.adaptSize)),
           prefixConstraints: BoxConstraints(maxHeight: 48.v),
           suffix: InkWell(
               onTap: () {
@@ -235,8 +247,9 @@ class SignUpScreen extends StatelessWidget {
                   margin: EdgeInsets.fromLTRB(30.h, 12.v, 12.h, 12.v),
                   child: CustomImageView(
                       imagePath: ImageConstant.imgContrast,
-                      height: 24.adaptSize,
-                      width: 24.adaptSize))),
+                      color: Colors.black,
+                  height: 20.adaptSize,
+                  width: 20.adaptSize))),
           suffixConstraints: BoxConstraints(maxHeight: 48.v),
           validator: (value) {
             if (value == null || (!isValidPassword(value, isRequired: true))) {
@@ -255,14 +268,14 @@ class SignUpScreen extends StatelessWidget {
       return CustomTextFormField(
           controller: state.passwordController,
           hintText: "msg_confirm_password".tr,
-          textInputAction: TextInputAction.done,
           textInputType: TextInputType.visiblePassword,
           prefix: Container(
               margin: EdgeInsets.all(12.h),
               child: CustomImageView(
                   imagePath: ImageConstant.imgTrophy,
-                  height: 24.adaptSize,
-                  width: 24.adaptSize)),
+                   color: Colors.black,
+                  height: 20.adaptSize,
+                  width: 20.adaptSize)),
           prefixConstraints: BoxConstraints(maxHeight: 48.v),
           suffix: InkWell(
               onTap: () {
@@ -273,8 +286,9 @@ class SignUpScreen extends StatelessWidget {
                   margin: EdgeInsets.fromLTRB(30.h, 12.v, 12.h, 12.v),
                   child: CustomImageView(
                       imagePath: ImageConstant.imgContrast,
-                      height: 24.adaptSize,
-                      width: 24.adaptSize))),
+                       color: Colors.black,
+                  height: 20.adaptSize,
+                  width: 20.adaptSize))),
           suffixConstraints: BoxConstraints(maxHeight: 48.v),
           validator: (value) {
             if (value == null || (!isValidPassword(value, isRequired: true))) {
@@ -316,23 +330,29 @@ class SignUpScreen extends StatelessWidget {
   Widget _buildOr(BuildContext context) {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       Opacity(
-          opacity: 0.08,
-          child: Container(
-              height: 2.v,
-              width: 106.h,
-              margin: EdgeInsets.only(top: 8.v, bottom: 9.v),
-              decoration:
-                  BoxDecoration(color: appTheme.black900.withOpacity(0.38)))),
+        opacity: 0.08,
+        child: Container(
+          height: 2.v,
+          width: 106.h,
+          margin: EdgeInsets.only(top: 8.v, bottom: 9.v),
+          decoration: BoxDecoration(
+            color: appTheme.black900.withOpacity(0.38),
+          ),
+        ),
+      ),
       Text("msg_or_continue_with".tr,
           style: CustomTextStyles.titleMediumGray700),
       Opacity(
-          opacity: 0.08,
-          child: Container(
-              height: 2.v,
-              width: 106.h,
-              margin: EdgeInsets.only(top: 8.v, bottom: 9.v),
-              decoration:
-                  BoxDecoration(color: appTheme.black900.withOpacity(0.38))))
+        opacity: 0.08,
+        child: Container(
+          height: 2.v,
+          width: 106.h,
+          margin: EdgeInsets.only(top: 8.v, bottom: 9.v),
+          decoration: BoxDecoration(
+            color: appTheme.black900.withOpacity(0.38),
+          ),
+        ),
+      )
     ]);
   }
 
@@ -344,10 +364,17 @@ class SignUpScreen extends StatelessWidget {
   onTapBtnFacebook(BuildContext context) async {
     await FacebookAuthHelper().facebookSignInProcess().then((facebookUser) {
       //TODO Actions to be performed after signin
-    }).catchError((onError) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(onError.toString())));
-    });
+    }).catchError(
+      (onError) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              onError.toString(),
+            ),
+          ),
+        );
+      },
+    );
   }
 
   onTapBtnGoogle(BuildContext context) async {
@@ -355,12 +382,20 @@ class SignUpScreen extends StatelessWidget {
       if (googleUser != null) {
         //TODO Actions to be performed after signin
       } else {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text('user data is empty')));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('user data is empty'),
+          ),
+        );
       }
     }).catchError((onError) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(onError.toString())));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            onError.toString(),
+          ),
+        ),
+      );
     });
   }
 }

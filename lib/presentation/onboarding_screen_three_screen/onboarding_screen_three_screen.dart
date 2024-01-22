@@ -1,3 +1,5 @@
+import 'package:spire_e_doctors/widgets/custom_elevated_button.dart';
+
 import 'bloc/onboarding_screen_three_bloc.dart';
 import 'models/onboarding_screen_three_model.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +13,13 @@ class OnboardingScreenThreeScreen extends StatelessWidget {
 
   static Widget builder(BuildContext context) {
     return BlocProvider<OnboardingScreenThreeBloc>(
-      create: (context) => OnboardingScreenThreeBloc(OnboardingScreenThreeState(
-        onboardingScreenThreeModelObj: OnboardingScreenThreeModel(),
-      ))
-        ..add(OnboardingScreenThreeInitialEvent()),
+      create: (context) => OnboardingScreenThreeBloc(
+        OnboardingScreenThreeState(
+          onboardingScreenThreeModelObj: OnboardingScreenThreeModel(),
+        ),
+      )..add(
+          OnboardingScreenThreeInitialEvent(),
+        ),
       child: OnboardingScreenThreeScreen(),
     );
   }
@@ -23,12 +28,12 @@ class OnboardingScreenThreeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<OnboardingScreenThreeBloc, OnboardingScreenThreeState>(
       builder: (context, state) {
-        return SafeArea(
-          child: Scaffold(
-            backgroundColor: theme.colorScheme.primary,
-            body: Container(
-              width: double.maxFinite,
-              padding: EdgeInsets.symmetric(vertical: 32.v),
+        return Scaffold(
+          backgroundColor: theme.colorScheme.primary,
+          body: Container(
+            width: double.maxFinite,
+            padding: EdgeInsets.symmetric(vertical: 32.v),
+            child: SafeArea(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -56,7 +61,34 @@ class OnboardingScreenThreeScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 68.v),
                   _buildOnboardingStack(context),
-                  SizedBox(height: 5.v),
+                 Spacer(),
+                 Padding(
+                   padding:  EdgeInsets.symmetric(vertical: 10.v, horizontal: 16.h),
+                   child: CustomElevatedButton(
+                    buttonStyle: ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(Color.fromRGBO(36, 52, 78, 1)),
+                    ),
+                    text: "Create an Account ", onPressed: (){
+                      Navigator.pushNamed(context, AppRoutes.signUpScreen);
+                    }
+                   ),
+                 ),
+                   Padding(
+                   padding:  EdgeInsets.symmetric(vertical: 10.v, horizontal: 16.h),
+                   child: CustomElevatedButton(
+                    buttonStyle: ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(Colors.white),
+                    ),
+                  buttonTextStyle: TextStyle(color: Color.fromRGBO(36, 52, 78, 1),
+                  fontSize: 22.adaptSize,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: "League Spartan"
+                    ),
+                    text: "Sign In", 
+                    onPressed: (){}
+                   ),
+                   
+                 ),
                 ],
               ),
             ),

@@ -8,11 +8,8 @@ class CustomTextFormField extends StatelessWidget {
     this.width,
     this.scrollPadding,
     this.controller,
-    this.focusNode,
-    this.autofocus = true,
     this.textStyle,
     this.obscureText = false,
-    this.textInputAction = TextInputAction.next,
     this.textInputType = TextInputType.text,
     this.maxLines,
     this.hintText,
@@ -38,15 +35,10 @@ class CustomTextFormField extends StatelessWidget {
 
   final TextEditingController? controller;
 
-  final FocusNode? focusNode;
-
-  final bool? autofocus;
-
   final TextStyle? textStyle;
 
   final bool? obscureText;
 
-  final TextInputAction? textInputAction;
 
   final TextInputType? textInputType;
 
@@ -89,12 +81,9 @@ class CustomTextFormField extends StatelessWidget {
         child: TextFormField(
           scrollPadding:
               EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-          controller: controller,
-          focusNode: focusNode ?? FocusNode(),
-          autofocus: autofocus!,
+          controller: controller,        
           style: textStyle ?? theme.textTheme.bodyLarge,
           obscureText: obscureText!,
-          textInputAction: textInputAction,
           keyboardType: textInputType,
           maxLines: maxLines ?? 1,
           decoration: decoration,
