@@ -1,3 +1,5 @@
+import 'package:flutter/services.dart';
+
 import 'bloc/splash_bloc.dart';
 import 'models/splash_model.dart';
 import 'package:flutter/material.dart';
@@ -23,30 +25,36 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SplashBloc, SplashState>(
       builder: (context, state) {
-        return Scaffold(
-          extendBody: true,
-          extendBodyBehindAppBar: true,
-          body: Container(
-            width: SizeUtils.width,
-            height: SizeUtils.height,
-            decoration: BoxDecoration(
-              color: theme.colorScheme.onPrimaryContainer,
-              image: DecorationImage(
-                  image: AssetImage(ImageConstant.img01SplashScreen),
-                  fit: BoxFit.cover),
+        return AnnotatedRegion<SystemUiOverlayStyle>(
+            value: const SystemUiOverlayStyle(
+              statusBarColor: Colors.transparent,
+              statusBarBrightness: Brightness.dark,
+              statusBarIconBrightness: Brightness.dark,
             ),
-            child: SizedBox(
-              width: double.maxFinite,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(height: 1.v),
-                  _buildSplashScreenRow(context)
-                ],
+            child: Scaffold(
+              extendBody: true,
+              extendBodyBehindAppBar: true,
+              body: Container(
+                width: SizeUtils.width,
+                height: SizeUtils.height,
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.onPrimaryContainer,
+                  image: DecorationImage(
+                      image: AssetImage(ImageConstant.img01SplashScreen),
+                      fit: BoxFit.cover),
+                ),
+                child: SizedBox(
+                  width: double.maxFinite,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(height: 1.v),
+                      _buildSplashScreenRow(context)
+                    ],
+                  ),
+                ),
               ),
-            ),
-          ),
-        );
+            ));
       },
     );
   }

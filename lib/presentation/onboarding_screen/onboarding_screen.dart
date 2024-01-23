@@ -1,41 +1,39 @@
-import 'bloc/onboarding_bloc.dart';
-import 'models/onboarding_model.dart';
+import 'package:flutter/services.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:spire_e_doctors/presentation/onboarding_screen_two_screen/onboarding_screen_two_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:spire_e_doctors/core/app_export.dart';
 import 'package:spire_e_doctors/widgets/custom_icon_button.dart';
 
 class OnboardingScreen extends StatelessWidget {
-  const OnboardingScreen({Key? key})
-      : super(
-          key: key,
-        );
-
-  static Widget builder(BuildContext context) {
-    return BlocProvider<OnboardingBloc>(
-      create: (context) => OnboardingBloc(OnboardingState(
-        onboardingModelObj: OnboardingModel(),
-      ))
-        ..add(OnboardingInitialEvent()),
-      child: OnboardingScreen(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<OnboardingBloc, OnboardingState>(
-      builder: (context, state) {
-        return Scaffold(
-          body: SizedBox(
-            width: double.maxFinite,
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarBrightness: Brightness.dark,
+        statusBarIconBrightness: Brightness.dark,
+      ),
+      child:Scaffold(
+      body: Stack(
+        children: [
+          CustomImageView(
+            imagePath: ImageConstant.imgGroup16,
+            fit: BoxFit.cover,
+            width: SizeUtils.width,
+            height: SizeUtils.height,
+          ),
+          SafeArea(
             child: Column(
               children: [
+                SizedBox(height: 50.v),
                 Text(
                   "msg_medicine_reminder".tr,
                   style: CustomTextStyles.headlineMediumOnPrimary,
                 ),
                 SizedBox(height: 17.v),
                 SizedBox(
-                 // width: 205.h,
+                  // width: 205.h,
                   child: Text(
                     "msg_set_up_a_reminder".tr,
                     maxLines: 2,
@@ -44,41 +42,35 @@ class OnboardingScreen extends StatelessWidget {
                     style: theme.textTheme.titleMedium,
                   ),
                 ),
-                SizedBox(height: 27.v),
-                Container(
-                  width: double.maxFinite,
-                  padding: EdgeInsets.symmetric(vertical: 21.v),
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(
-                        ImageConstant.imgGroup16,
+                SizedBox(height: 150.v),
+                _buildReminderStack(context),
+                Spacer(),
+                CustomIconButton(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        duration: Duration(milliseconds: 300),
+                        child: OnboardingScreenTwoScreen(),
                       ),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 91.v),
-                      _buildReminderStack(context),
-                      SizedBox(height: 62.v),
-                      CustomIconButton(
-                        height: 54.adaptSize,
-                        width: 54.adaptSize,
-                        padding: EdgeInsets.all(18.h),
-                        alignment: Alignment.center,
-                        child: CustomImageView(
-                          imagePath: ImageConstant.imgArrowRightOnprimary,
-                        ),
-                      ),
-                    ],
+                    );
+                  },
+                  height: 54.adaptSize,
+                  width: 54.adaptSize,
+                  padding: EdgeInsets.all(18.h),
+                  alignment: Alignment.center,
+                  child: CustomImageView(
+                    imagePath: ImageConstant.imgArrowRightOnprimary,
+                    color: Colors.indigo,
                   ),
                 ),
+                SizedBox(height: 15.v),
               ],
             ),
           ),
-        );
-      },
+        ],
+      ),)
     );
   }
 

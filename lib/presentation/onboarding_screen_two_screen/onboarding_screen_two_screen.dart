@@ -1,93 +1,81 @@
-import 'bloc/onboarding_screen_two_bloc.dart';
-import 'models/onboarding_screen_two_model.dart';
+import 'package:flutter/services.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:spire_e_doctors/presentation/onboarding_screen_three_screen/onboarding_screen_three_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:spire_e_doctors/core/app_export.dart';
 import 'package:spire_e_doctors/widgets/custom_icon_button.dart';
 
 class OnboardingScreenTwoScreen extends StatelessWidget {
-  const OnboardingScreenTwoScreen({Key? key})
-      : super(
-          key: key,
-        );
 
-  static Widget builder(BuildContext context) {
-    return BlocProvider<OnboardingScreenTwoBloc>(
-      create: (context) => OnboardingScreenTwoBloc(OnboardingScreenTwoState(
-        onboardingScreenTwoModelObj: OnboardingScreenTwoModel(),
-      ))
-        ..add(OnboardingScreenTwoInitialEvent()),
-      child: OnboardingScreenTwoScreen(),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<OnboardingScreenTwoBloc, OnboardingScreenTwoState>(
-      builder: (context, state) {
-        return Scaffold(
-          body: SizedBox(
-            width: double.maxFinite,
-            child: SafeArea(
-              child: Column(
-                children: [
-                  SizedBox(height: 50.v),
-                  Text(
-                    "msg_order_medicine_online".tr,
-                    style: CustomTextStyles.headlineMediumPurpleA100,
-                  ),
-                  SizedBox(height: 17.v),
-                  SizedBox(
-                    width: 213.h,
-                    child: Text(
-                      "msg_order_your_medicine".tr,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.center,
-                      style: theme.textTheme.titleMedium,
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarBrightness: Brightness.dark,
+        statusBarIconBrightness: Brightness.dark,
+      ),
+      child: Scaffold(
+          body: SafeArea(
+            child: Stack(
+              children: [
+                CustomImageView(
+                  imagePath: ImageConstant.imgGroup17,
+                  fit: BoxFit.cover,
+                  width: SizeUtils.width,
+                  height: SizeUtils.height,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 50.v),
+                    Text(
+                      "msg_order_medicine_online".tr,
+                      style: CustomTextStyles.headlineMediumPurpleA100,
                     ),
-                  ),
-                  SizedBox(height: 25.v),
-                  Expanded(
-                    child: Container(
-                      width: double.maxFinite,
-                      padding: EdgeInsets.symmetric(vertical: 21.v),
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(
-                            ImageConstant.imgGroup17,
-                          ),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Spacer(),
-                          _buildDeliveryStack(context),
-                          SizedBox(height: 62.v),
-                          CustomIconButton(
-                            onTap: () {
-                              Navigator.pushNamed(context, AppRoutes.onboardingScreenThreeScreen);
-                            },
-                            height: 54.adaptSize,
-                            width: 54.adaptSize,
-                            padding: EdgeInsets.all(18.h),
-                            alignment: Alignment.center,
-                            child: CustomImageView(
-                              imagePath: ImageConstant.imgArrowRightPurpleA200,
-                              color: Color.fromRGBO(198, 79, 249, 1),
-                            ),
-                          ),
-                        ],
+                    SizedBox(height: 17.v),
+                    SizedBox(
+                      width: 213.h,
+                      child: Text(
+                        "msg_order_your_medicine".tr,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.center,
+                        style: theme.textTheme.titleMedium,
                       ),
                     ),
-                  ),
-                ],
-              ),
+                    SizedBox(height: 150.v),
+                    _buildDeliveryStack(context),
+                    SizedBox(height: 62.v),
+                    Spacer(),
+                    CustomIconButton(
+                      onTap: () {
+                         Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        duration: Duration(milliseconds: 300),
+                        child: OnboardingScreenThreeScreen(),
+                      ),
+                    );
+                      },
+                      height: 54.adaptSize,
+                      width: 54.adaptSize,
+                      padding: EdgeInsets.all(18.h),
+                      alignment: Alignment.center,
+                      child: CustomImageView(
+                        imagePath: ImageConstant.imgArrowRightPurpleA200,
+                        color: Color.fromRGBO(198, 79, 249, 1),
+                      ),
+                    ),
+                    SizedBox(height: 15.v),
+                  ],
+                ),
+              ],
             ),
           ),
-        );
-      },
+      )
     );
   }
 

@@ -75,7 +75,6 @@ class CustomTextFormField extends StatelessWidget {
           )
         : textFormFieldWidget(context);
   }
-
   Widget textFormFieldWidget(BuildContext context) => SizedBox(
         width: width ?? double.maxFinite,
         child: TextFormField(

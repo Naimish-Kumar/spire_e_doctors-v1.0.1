@@ -6,6 +6,8 @@ class GoogleAuthHelper {
     GoogleSignIn googleSignIn = GoogleSignIn();
     GoogleSignInAccount? googleUser = await googleSignIn.signIn();
     if (googleUser != null) {
+
+      
       return googleUser;
     }
     return null;

@@ -74,8 +74,8 @@ class SignUpScreen extends StatelessWidget {
                       onTap: () {
                         onTapBtnFacebook(context);
                       },
-                      child:
-                          CustomImageView(imagePath: 'assets/images/facebook.png'),
+                      child: CustomImageView(
+                          imagePath: 'assets/images/facebook.png'),
                     ),
                     Padding(
                       padding: EdgeInsets.only(left: 24.h),
@@ -87,8 +87,8 @@ class SignUpScreen extends StatelessWidget {
                         onTap: () {
                           onTapBtnGoogle(context);
                         },
-                        child:
-                            CustomImageView(imagePath: 'assets/images/google.png'),
+                        child: CustomImageView(
+                            imagePath: 'assets/images/google.png'),
                       ),
                     ),
                     Padding(
@@ -99,7 +99,7 @@ class SignUpScreen extends StatelessWidget {
                           padding: EdgeInsets.all(8.h),
                           decoration: IconButtonStyleHelper.outlineBlackTL8,
                           child: CustomImageView(
-                              imagePath: 'assets/images/twitter.png')),
+                              imagePath: 'assets/images/twitter.png'),),
                     )
                   ]),
                   SizedBox(height: 29.v),
@@ -152,7 +152,7 @@ class SignUpScreen extends StatelessWidget {
               margin: EdgeInsets.all(12.h),
               child: CustomImageView(
                   imagePath: ImageConstant.imgLock,
-                   color: Colors.black,
+                  color: Colors.black,
                   height: 20.adaptSize,
                   width: 20.adaptSize)),
           prefixConstraints: BoxConstraints(maxHeight: 48.v),
@@ -248,8 +248,8 @@ class SignUpScreen extends StatelessWidget {
                   child: CustomImageView(
                       imagePath: ImageConstant.imgContrast,
                       color: Colors.black,
-                  height: 20.adaptSize,
-                  width: 20.adaptSize))),
+                      height: 20.adaptSize,
+                      width: 20.adaptSize))),
           suffixConstraints: BoxConstraints(maxHeight: 48.v),
           validator: (value) {
             if (value == null || (!isValidPassword(value, isRequired: true))) {
@@ -273,7 +273,7 @@ class SignUpScreen extends StatelessWidget {
               margin: EdgeInsets.all(12.h),
               child: CustomImageView(
                   imagePath: ImageConstant.imgTrophy,
-                   color: Colors.black,
+                  color: Colors.black,
                   height: 20.adaptSize,
                   width: 20.adaptSize)),
           prefixConstraints: BoxConstraints(maxHeight: 48.v),
@@ -286,9 +286,9 @@ class SignUpScreen extends StatelessWidget {
                   margin: EdgeInsets.fromLTRB(30.h, 12.v, 12.h, 12.v),
                   child: CustomImageView(
                       imagePath: ImageConstant.imgContrast,
-                       color: Colors.black,
-                  height: 20.adaptSize,
-                  width: 20.adaptSize))),
+                      color: Colors.black,
+                      height: 20.adaptSize,
+                      width: 20.adaptSize))),
           suffixConstraints: BoxConstraints(maxHeight: 48.v),
           validator: (value) {
             if (value == null || (!isValidPassword(value, isRequired: true))) {
@@ -363,7 +363,6 @@ class SignUpScreen extends StatelessWidget {
 
   onTapBtnFacebook(BuildContext context) async {
     await FacebookAuthHelper().facebookSignInProcess().then((facebookUser) {
-      //TODO Actions to be performed after signin
     }).catchError(
       (onError) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -380,7 +379,16 @@ class SignUpScreen extends StatelessWidget {
   onTapBtnGoogle(BuildContext context) async {
     await GoogleAuthHelper().googleSignInProcess().then((googleUser) {
       if (googleUser != null) {
-        //TODO Actions to be performed after signin
+        print( googleUser.displayName);
+        print( googleUser.email);
+        print( googleUser.photoUrl);
+        print( googleUser.id);
+
+        
+
+
+
+
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(

@@ -1,11 +1,6 @@
-// ignore_for_file: must_be_immutable
-
 part of 'splash_bloc.dart';
 
-/// Abstract class for all events that can be dispatched from the
-///Splash widget.
-///
-/// Events must be immutable and implement the [Equatable] interface.
+
 @immutable
 abstract class SplashEvent extends Equatable {}
 

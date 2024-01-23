@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
 import 'core/app_export.dart';
 
 var globalMessengerKey = GlobalKey<ScaffoldMessengerState>();
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
           child: BlocBuilder<ThemeBloc, ThemeState>(
             builder: (context, state) {
               return MaterialApp(
+              //  home: RegistrationScreen(),
                 theme: theme,
                 title: 'spire_e_doctors',
                 navigatorKey: NavigatorService.navigatorKey,
