@@ -1,3 +1,5 @@
+import 'package:spire_e_doctors/presentation/sign_in_screen/sign_in_screen.dart';
+
 import 'bloc/sign_up_bloc.dart';
 import 'models/sign_up_model.dart';
 import 'package:flutter/material.dart';
@@ -33,21 +35,47 @@ class SignUpScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: appTheme.gray100,
       resizeToAvoidBottomInset: false,
-      appBar: _buildAppBar(context),
-      body: SizedBox(
-        width: SizeUtils.width,
-        child: SingleChildScrollView(
-          padding:
-              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-          child: Form(
-            key: _formKey,
-            child: Container(
-              width: double.maxFinite,
-              padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 32.v),
-              child: SafeArea(
-                child: Column(children: [
-                  Text("msg_create_your_account".tr,
-                      style: theme.textTheme.headlineLarge),
+      // appBar: _buildAppBar(context),
+      body: Container(
+        width: double.maxFinite,
+        padding: EdgeInsets.symmetric(horizontal: 16.h),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(8.adaptSize),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey.shade200,
+                            blurRadius: 5,
+                            offset: const Offset(0, 3),
+                            spreadRadius: 1)
+                      ],
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(
+                        Icons.arrow_back_ios_new_rounded,
+                        size: 20.adaptSize,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20.v),
+                  Center(
+                    child: Text("msg_create_your_account".tr,
+                        style: theme.textTheme.headlineLarge),
+                  ),
+                   Center(
+                    child: Text("Enter your details to create account".tr,
+                        style: theme.textTheme.titleMedium),
+                  ),
                   SizedBox(height: 29.v),
                   _buildCreateYourAccount(context),
                   SizedBox(height: 12.v),
@@ -62,7 +90,7 @@ class SignUpScreen extends StatelessWidget {
                   _buildRememberMe(context),
                   SizedBox(height: 20.v),
                   _buildSignUp(context),
-                  SizedBox(height: 15.v),
+                  SizedBox(height: 35.v),
                   _buildOr(context),
                   SizedBox(height: 25.v),
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -96,30 +124,46 @@ class SignUpScreen extends StatelessWidget {
                       child: CustomIconButton(
                           height: 48.adaptSize,
                           width: 48.adaptSize,
-                          padding: EdgeInsets.all(8.h),
                           decoration: IconButtonStyleHelper.outlineBlackTL8,
-                          child: CustomImageView(
-                              imagePath: 'assets/images/twitter.png'),),
+                          child: Icon(
+                            Icons.apple_rounded,
+                            color: Colors.black,
+                            size: 35.adaptSize,
+                          )),
                     )
                   ]),
-                  SizedBox(height: 29.v),
-                  RichText(
-                      text: TextSpan(children: [
-                        TextSpan(
-                            text: "lbl_already".tr,
-                            style: CustomTextStyles.titleMediumff666666),
-                        TextSpan(
-                            text: "msg_have_an_account".tr,
-                            style: CustomTextStyles.titleMediumff666666),
-                        TextSpan(
-                            text: "lbl_sign_in".tr,
-                            style: CustomTextStyles.titleMediumff000000)
-                      ]),
-                      textAlign: TextAlign.left),
-                  SizedBox(height: 5.v)
+                  SizedBox(height: 10.v),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                    Text("lbl_already".tr+"msg_have_an_account".tr,
+                        style: CustomTextStyles.titleMediumff000000),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SignInScreen(),
+                          ),
+                        );
+                      },
+                     child: Row(
+                        children: [
+                          Text(
+                            "lbl_sign_in".tr,
+                            style: CustomTextStyles.titleMediumff000000,
+                          ),
+                          SizedBox(width: 5.h),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 18.adaptSize,
+                            color: Colors.black,
+                          )
+                        ],
+                      ),
+                    )
+                  ]),
+                SizedBox(height: 10.v),
                 ]),
-              ),
-            ),
           ),
         ),
       ),
@@ -264,61 +308,68 @@ class SignUpScreen extends StatelessWidget {
 
   /// Section Widget
   Widget _buildPassword(BuildContext context) {
-    return BlocBuilder<SignUpBloc, SignUpState>(builder: (context, state) {
-      return CustomTextFormField(
-          controller: state.passwordController,
-          hintText: "msg_confirm_password".tr,
-          textInputType: TextInputType.visiblePassword,
-          prefix: Container(
-              margin: EdgeInsets.all(12.h),
-              child: CustomImageView(
-                  imagePath: ImageConstant.imgTrophy,
-                  color: Colors.black,
-                  height: 20.adaptSize,
-                  width: 20.adaptSize)),
-          prefixConstraints: BoxConstraints(maxHeight: 48.v),
-          suffix: InkWell(
-              onTap: () {
-                context.read<SignUpBloc>().add(ChangePasswordVisibilityEvent1(
-                    value: !state.isShowPassword1));
-              },
-              child: Container(
-                  margin: EdgeInsets.fromLTRB(30.h, 12.v, 12.h, 12.v),
-                  child: CustomImageView(
-                      imagePath: ImageConstant.imgContrast,
-                      color: Colors.black,
-                      height: 20.adaptSize,
-                      width: 20.adaptSize))),
-          suffixConstraints: BoxConstraints(maxHeight: 48.v),
-          validator: (value) {
-            if (value == null || (!isValidPassword(value, isRequired: true))) {
-              return "err_msg_please_enter_valid_password".tr;
-            }
-            return null;
-          },
-          obscureText: state.isShowPassword1,
-          contentPadding: EdgeInsets.symmetric(vertical: 13.v));
-    });
+    return BlocBuilder<SignUpBloc, SignUpState>(
+      builder: (context, state) {
+        return CustomTextFormField(
+            controller: state.passwordController,
+            hintText: "msg_confirm_password".tr,
+            textInputType: TextInputType.visiblePassword,
+            prefix: Container(
+                margin: EdgeInsets.all(12.h),
+                child: CustomImageView(
+                    imagePath: ImageConstant.imgTrophy,
+                    color: Colors.black,
+                    height: 20.adaptSize,
+                    width: 20.adaptSize)),
+            prefixConstraints: BoxConstraints(maxHeight: 48.v),
+            suffix: InkWell(
+                onTap: () {
+                  context.read<SignUpBloc>().add(
+                        ChangePasswordVisibilityEvent1(
+                            value: !state.isShowPassword1),
+                      );
+                },
+                child: Container(
+                    margin: EdgeInsets.fromLTRB(30.h, 12.v, 12.h, 12.v),
+                    child: CustomImageView(
+                        imagePath: ImageConstant.imgContrast,
+                        color: Colors.black,
+                        height: 20.adaptSize,
+                        width: 20.adaptSize))),
+            suffixConstraints: BoxConstraints(maxHeight: 48.v),
+            validator: (value) {
+              if (value == null ||
+                  (!isValidPassword(value, isRequired: true))) {
+                return "err_msg_please_enter_valid_password".tr;
+              }
+              return null;
+            },
+            obscureText: state.isShowPassword1,
+            contentPadding: EdgeInsets.symmetric(vertical: 13.v));
+      },
+    );
   }
 
   /// Section Widget
   Widget _buildRememberMe(BuildContext context) {
     return Align(
-        alignment: Alignment.centerLeft,
-        child: BlocSelector<SignUpBloc, SignUpState, bool?>(
-            selector: (state) => state.rememberMe,
-            builder: (context, rememberMe) {
-              return CustomCheckboxButton(
-                  alignment: Alignment.centerLeft,
-                  text: "lbl_remember_me".tr,
-                  value: rememberMe,
-                  padding: EdgeInsets.symmetric(vertical: 1.v),
-                  onChange: (value) {
-                    context
-                        .read<SignUpBloc>()
-                        .add(ChangeCheckBoxEvent(value: value));
-                  });
-            }));
+      alignment: Alignment.centerLeft,
+      child: BlocSelector<SignUpBloc, SignUpState, bool?>(
+        selector: (state) => state.rememberMe,
+        builder: (context, rememberMe) {
+          return CustomCheckboxButton(
+              alignment: Alignment.centerLeft,
+              text: "lbl_remember_me".tr,
+              value: rememberMe,
+              padding: EdgeInsets.symmetric(vertical: 1.v),
+              onChange: (value) {
+                context
+                    .read<SignUpBloc>()
+                    .add(ChangeCheckBoxEvent(value: value));
+              });
+        },
+      ),
+    );
   }
 
   /// Section Widget
@@ -362,8 +413,10 @@ class SignUpScreen extends StatelessWidget {
   }
 
   onTapBtnFacebook(BuildContext context) async {
-    await FacebookAuthHelper().facebookSignInProcess().then((facebookUser) {
-    }).catchError(
+    await FacebookAuthHelper()
+        .facebookSignInProcess()
+        .then((facebookUser) {})
+        .catchError(
       (onError) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -379,16 +432,10 @@ class SignUpScreen extends StatelessWidget {
   onTapBtnGoogle(BuildContext context) async {
     await GoogleAuthHelper().googleSignInProcess().then((googleUser) {
       if (googleUser != null) {
-        print( googleUser.displayName);
-        print( googleUser.email);
-        print( googleUser.photoUrl);
-        print( googleUser.id);
-
-        
-
-
-
-
+        print(googleUser.displayName);
+        print(googleUser.email);
+        print(googleUser.photoUrl);
+        print(googleUser.id);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(

@@ -1,5 +1,4 @@
 import 'package:flutter/services.dart';
-
 import 'bloc/splash_bloc.dart';
 import 'models/splash_model.dart';
 import 'package:flutter/material.dart';
@@ -61,31 +60,31 @@ class SplashScreen extends StatelessWidget {
 
   /// Section Widget
   Widget _buildSplashScreenRow(BuildContext context) {
-    return SizedBox(
-      width: double.maxFinite,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(top: 85.v, bottom: 55.v),
-            child: SizedBox(
-              width: 117.h,
-              child: Divider(),
+    return Center(
+      child: Container(
+        height: 200,
+        padding: EdgeInsets.all(10.adaptSize),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.white.withOpacity(0.3),
+        ),
+        child: Container(
+          padding: EdgeInsets.all(10.adaptSize),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.white.withOpacity(0.4),
+          ),
+          child: Container(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.white.withOpacity(0.7),
+            ),
+            child: CustomImageView(
+              margin: EdgeInsets.all(20.adaptSize),
+              imagePath: 'assets/images/logo.png',
             ),
           ),
-          CustomImageView(
-              imagePath: ImageConstant.imgLogoSpireEDoctors,
-              height: 141.adaptSize,
-              width: 141.adaptSize),
-          Padding(
-            padding: EdgeInsets.only(top: 85.v, bottom: 55.v),
-            child: SizedBox(
-              width: 117.h,
-              child: Divider(),
-            ),
-          )
-        ],
+        ),
       ),
     );
   }
