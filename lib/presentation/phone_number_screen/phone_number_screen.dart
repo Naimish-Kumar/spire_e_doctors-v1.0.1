@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:spire_e_doctors/core/app_export.dart';
 import 'package:spire_e_doctors/presentation/otp_screen.dart/otp_screen.dart';
@@ -10,7 +11,13 @@ class PhoneNumberScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarBrightness: Brightness.dark,
+        statusBarIconBrightness: Brightness.dark,
+      ),
+      child: Scaffold(
       backgroundColor: appTheme.gray100,
       appBar: _buildAppBar(context),
       body: Container(
@@ -79,7 +86,7 @@ class PhoneNumberScreen extends StatelessWidget {
             _buildSendOtp(context)
           ],
         ),
-      ),
+      ),)
     );
   }
 }

@@ -61,20 +61,23 @@ class SplashScreen extends StatelessWidget {
   /// Section Widget
   Widget _buildSplashScreenRow(BuildContext context) {
     return Center(
-      child: Container(
+      child: AnimatedContainer(
         height: 200,
         padding: EdgeInsets.all(10.adaptSize),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: Colors.white.withOpacity(0.3),
         ),
-        child: Container(
+        duration: Duration(milliseconds: 2000),
+        child: AnimatedContainer(                                                                                                                                                                                                                           
+          duration: Duration(milliseconds: 2000),
           padding: EdgeInsets.all(10.adaptSize),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: Colors.white.withOpacity(0.4),
           ),
-          child: Container(
+          child: AnimatedContainer(
+            duration: Duration(milliseconds: 2000),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.white.withOpacity(0.7),
